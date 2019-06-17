@@ -12,16 +12,28 @@ using System.Text;
 
 namespace WebhookApi.Controllers
 {
-	[Route("webhook")]
+	[Route("api/webhook")]
 	public class WebhookController : Controller
 	{
 		private static readonly JsonParser jsonParser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
 
 		[HttpPost]
-		public async Task<JsonResult> GetWebhookResponse()
+		public async Task<JsonResult> GetWebhookResponse([FromBody] WebhookRequest botRequest)
 		{
+            var newRequest = botRequest; 
 			WebhookRequest request;
-			using (var reader = new StreamReader(Request.Body))
+   //         try
+   //         {
+   //             request = jsonParser.Parse<WebhookRequest>(botRequest);
+   //         }
+   //         catch (Exception ex)
+   //         {
+
+   //             throw;
+   //         }
+            
+
+            using (var reader = new StreamReader(Request.Body))
 			{
 				request = jsonParser.Parse<WebhookRequest>(reader);
 			}
