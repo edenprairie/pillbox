@@ -18,7 +18,7 @@ namespace PillBox
     {
         private static readonly JsonParser jsonParser = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(true));
 
-        [FunctionName("getpillboxstatus")]
+        [FunctionName("GetpillboxStatus")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]  HttpRequest req,
             ILogger log)
